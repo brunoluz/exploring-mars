@@ -6,7 +6,13 @@ public class RocketCoordinate {
 
 	private int y;
 
-	Direction direction;
+	private Direction direction;
+
+	public RocketCoordinate() {
+		x = 0;
+		y = 0;
+		direction = Direction.North;
+	}
 
 	int getX() {
 		return x;
@@ -30,6 +36,18 @@ public class RocketCoordinate {
 			throw new ExploringMarsException("y value must be equal or greater than zero");
 
 		this.y = y;
+	}
+
+	Direction getDirection() {
+		return direction;
+	}
+
+	void setDirection(Direction direction) throws ExploringMarsException {
+
+		if (direction == null)
+			throw new ExploringMarsException("direction can't be null");
+
+		this.direction = direction;
 	}
 
 }
