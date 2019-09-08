@@ -74,29 +74,53 @@ public class RocketCoordinateTest {
 	}
 
 	@Test
-	public void rocketCoordinate_equals_diferentTypes() {
-
-		Object that = (Object) "objeto";
-		Object me = (Object) this.coordinate;
-
-		Assert.assertFalse(me == that);
+	public void rocketCoordinate_equals_nullValues() throws ExploringMarsException {
+		Object that = null;
+		Assert.assertFalse(this.coordinate.equals(that));
+	}
+	
+	@SuppressWarnings("unlikely-arg-type")
+	@Test
+	public void rocketCoordinate_equals_diferentTypes() throws ExploringMarsException {
+		String that = "rocket string!";
+		Assert.assertFalse(this.coordinate.equals(that));
 	}
 	
 	@Test
 	public void rocketCoordinate_equals_diferentValues() throws ExploringMarsException {
 		RocketCoordinate that = new RocketCoordinate(1, 1, Direction.West);
-		Assert.assertFalse(this.coordinate == that);
+		Assert.assertFalse(this.coordinate.equals(that));
 	}
 	
-//	@Test
-//	public void rocketCoordinate_equals_sameValues() throws ExploringMarsException {
-//		RocketCoordinate that = new RocketCoordinate(0, 0, Direction.North);
-//		
-//		boolean resultado = this.coordinate.equals(that);
-//		resultado = this.coordinate == that;
-//		Assert.assertTrue(resultado);
-//		// Assert.assertTrue(this.coordinate.equals(that));
-//	}
+	@Test
+	public void rocketCoordinate_equals_diferentX() throws ExploringMarsException {
+		RocketCoordinate that = new RocketCoordinate(1, 0, Direction.North);
+		Assert.assertFalse(this.coordinate.equals(that));
+	}
+	
+	@Test
+	public void rocketCoordinate_equals_diferentY() throws ExploringMarsException {
+		RocketCoordinate that = new RocketCoordinate(0, 1, Direction.North);
+		Assert.assertFalse(this.coordinate.equals(that));
+	}
+	
+	@Test
+	public void rocketCoordinate_equals_diferentDirection() throws ExploringMarsException {
+		RocketCoordinate that = new RocketCoordinate(0, 0, Direction.South);
+		Assert.assertFalse(this.coordinate.equals(that));
+	}
+	
+	@Test
+	public void rocketCoordinate_equals_sameValues() throws ExploringMarsException {
+		RocketCoordinate that = new RocketCoordinate(0, 0, Direction.North);
+		Assert.assertTrue(this.coordinate.equals(that));
+	}
+	
+	@Test
+	public void rocketCoordinate_equals_sameObject() throws ExploringMarsException {
+		RocketCoordinate that = this.coordinate;
+		Assert.assertTrue(this.coordinate.equals(that));
+	}
 
 
 }

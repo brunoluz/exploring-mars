@@ -1,5 +1,7 @@
 package exploring_mars.core;
 
+import java.util.Objects;
+
 public class RocketCoordinate {
 
 	private int x;
@@ -46,6 +48,23 @@ public class RocketCoordinate {
 		if (direction == null)
 			throw new ExploringMarsException("direction can't be empty.");
 		this.direction = direction;
+	}
+
+	// TODO: for some reason, == operator is not going.
+	//       for now we'll use obj1.equals(obj2); 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		
+		if (obj == null)
+			return false;
+		
+		if (getClass() != obj.getClass())
+			return false;
+		
+		RocketCoordinate other = (RocketCoordinate) obj;
+		return direction == other.direction && x == other.x && y == other.y;
 	}
 
 }

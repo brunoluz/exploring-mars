@@ -26,7 +26,6 @@ public class RocketNavigation {
 
 	public RocketCoordinate getCurrentCoordinate() {
 		return navigationHistory.get(navigationHistory.size() - 1);
-
 	}
 
 }
