@@ -21,7 +21,7 @@ public class RocketCoordinate {
 	void setX(int x) throws ExploringMarsException {
 
 		if (x < 0)
-			throw new ExploringMarsException("x value must be equal or greater than zero");
+			throw new ExploringMarsException("x value must be equal or greater than zero.");
 
 		this.x = x;
 	}
@@ -33,7 +33,7 @@ public class RocketCoordinate {
 	void setY(int y) throws ExploringMarsException {
 
 		if (y < 0)
-			throw new ExploringMarsException("y value must be equal or greater than zero");
+			throw new ExploringMarsException("y value must be equal or greater than zero.");
 
 		this.y = y;
 	}
@@ -45,7 +45,7 @@ public class RocketCoordinate {
 	void setDirection(Direction direction) throws ExploringMarsException {
 
 		if (direction == null)
-			throw new ExploringMarsException("direction can't be null");
+			throw new ExploringMarsException("direction can't be empty.");
 
 		this.direction = direction;
 	}

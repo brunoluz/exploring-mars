@@ -1,0 +1,2 @@
+x = horizontal
+y = vertical
