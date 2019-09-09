@@ -7,7 +7,7 @@ To buid and run this code, do the following lines:
 
 
 
-Instead, I've uploaded a container image to my docker hub.
+As an another option, I've uploaded a container image to my docker hub.
 it's possible to run the application executing docker with the following line:
 
 1. docker container run -it --rm brunoluz/exploring-mars
