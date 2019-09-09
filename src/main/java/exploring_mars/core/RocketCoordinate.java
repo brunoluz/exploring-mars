@@ -50,7 +50,7 @@ public class RocketCoordinate {
 		this.direction = direction;
 	}
 
-	// TODO: for some reason, == operator is not going.
+	// TODO: for some reason, == operator is not working.
 	//       for now we'll use obj1.equals(obj2); 
 	@Override
 	public boolean equals(Object obj) {

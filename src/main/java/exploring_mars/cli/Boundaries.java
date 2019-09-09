@@ -10,11 +10,11 @@ public class Boundaries {
         this.y = y;
     }
 
-    public int getFirst() {
+    public int getX() {
         return x;
     }
 
-    public int getSecond() {
+    public int getY() {
         return y;
     }
 	
