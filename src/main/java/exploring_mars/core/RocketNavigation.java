@@ -104,17 +104,17 @@ public class RocketNavigation {
 		int nextY;
 
 		if (currentDirection == Direction.North) {
-			nextX = currentX + 1;
-			nextY = currentY;
-		} else if (currentDirection == Direction.East) {
 			nextX = currentX;
 			nextY = currentY + 1;
-		} else if (currentDirection == Direction.South) {
-			nextX = currentX - 1;
+		} else if (currentDirection == Direction.East) {
+			nextX = currentX + 1;
 			nextY = currentY;
-		} else { // West
+		} else if (currentDirection == Direction.South) {
 			nextX = currentX;
 			nextY = currentY - 1;
+		} else { // West
+			nextX = currentX - 1;
+			nextY = currentY;
 		}
 
 		if (nextX < 0 || nextX > maximumX || nextY < 0 || nextY > maximumY)

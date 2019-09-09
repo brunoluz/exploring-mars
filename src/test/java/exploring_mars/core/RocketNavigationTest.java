@@ -183,5 +183,46 @@ public class RocketNavigationTest {
 		RocketCoordinate invalidCoordinate = new RocketCoordinate(0, 15, Direction.North);
 		navigation = new RocketNavigation(10, 10, invalidCoordinate);
 	}
+	
+	@Test
+	public void rocketNavigation_testCenario1() throws ExploringMarsException {
+	
+		navigation = new RocketNavigation(5, 5, new RocketCoordinate(1, 2, Direction.North));
+		
+		                       // 1 2 N
+		navigation.turnLeft(); // 1 2 W
+		navigation.move();     // 0 2 W
+		navigation.turnLeft(); // 0 2 S
+		navigation.move();     // 0 1 S
+		navigation.turnLeft(); // 0 1 E
+		navigation.move();     // 1 1 E
+		navigation.turnLeft(); // 1 1 N
+		navigation.move();     // 1 2 N
+		navigation.move();     // 1 3 N
+		
+		Assert.assertTrue(navigation.getCurrentCoordinate().equals(new RocketCoordinate(1, 3, Direction.North)));
+	}
+	
+	@Test
+	public void rocketNavigation_testCenario2() throws ExploringMarsException {
+	
+		navigation = new RocketNavigation(5, 5, new RocketCoordinate(3, 3, Direction.East));
+		
+		                        // 3 3 E      
+		navigation.move();      // 4 3 E
+		navigation.move();      // 5 3 E
+		navigation.turnRight(); // 5 3 S
+		
+		navigation.move();      // 5 2 S
+		navigation.move();      // 5 1 S
+		navigation.turnRight(); // 5 1 W
+		
+		navigation.move();      // 4 1 W
+		navigation.turnRight(); // 4 1 N
+		navigation.turnRight(); // 4 1 E
+		navigation.move();      // 5 1 E
+		
+		Assert.assertTrue(navigation.getCurrentCoordinate().equals(new RocketCoordinate(5, 1, Direction.East)));
+	}
 
 }
