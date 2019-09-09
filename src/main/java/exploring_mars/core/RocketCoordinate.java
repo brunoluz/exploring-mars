@@ -20,7 +20,7 @@ public class RocketCoordinate {
 		this.setDirection(direction);
 	}
 
-	int getX() {
+	public int getX() {
 		return x;
 	}
 
@@ -30,7 +30,7 @@ public class RocketCoordinate {
 		this.x = x;
 	}
 
-	int getY() {
+	public int getY() {
 		return y;
 	}
 

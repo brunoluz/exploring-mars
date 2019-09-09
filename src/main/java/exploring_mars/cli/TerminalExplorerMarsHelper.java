@@ -1,5 +1,8 @@
 package exploring_mars.cli;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import exploring_mars.core.Direction;
 import exploring_mars.core.ExploringMarsException;
 import exploring_mars.core.RocketCoordinate;
@@ -55,7 +58,7 @@ public class TerminalExplorerMarsHelper {
 		} catch (Exception e) {
 			throw new ExploringMarsException("Invalid coordinates.");
 		}
-		
+
 		if (strDirection.equalsIgnoreCase("N"))
 			direction = Direction.North;
 		else if (strDirection.equalsIgnoreCase("W"))
@@ -66,8 +69,45 @@ public class TerminalExplorerMarsHelper {
 			direction = Direction.East;
 		else
 			throw new ExploringMarsException("Invalid coordinates.");
-		
+
 		return new RocketCoordinate(x, y, direction);
 	}
 
+	public List<Move> readMoves() throws ExploringMarsException {
+
+		System.out.println("Inform movements [L|R|M]");
+
+		List<Move> moves = new ArrayList<Move>();
+
+		String movesLine = stdReader.readLine().trim();
+
+		for (int i = 0; i < movesLine.length(); i++) {
+			char c = movesLine.charAt(i);
+
+			if ("L".equalsIgnoreCase(Character.toString(c)))
+				moves.add(Move.Left);
+			else if ("R".equalsIgnoreCase(Character.toString(c)))
+				moves.add(Move.Right);
+			else if ("M".equalsIgnoreCase(Character.toString(c)))
+				moves.add(Move.Forward);
+			else
+				throw new ExploringMarsException("Invalid moves.");
+		}
+
+		return moves;
+	}
+	
+	public boolean readTryAgain() throws ExploringMarsException {
+		
+		System.out.println("Try one more rocket? (y/n)");
+		
+		String tryAgatin = stdReader.readLine().trim();
+		
+		if (tryAgatin.equalsIgnoreCase("Y"))
+			return true;
+		else if (tryAgatin.equalsIgnoreCase("N"))
+			return false;
+		else
+			throw new ExploringMarsException("Invalid option.");
+	}
 }

@@ -27,6 +27,8 @@ public class RocketNavigation {
 		
 		if (initialCoordinate.getX() > this.maximumX || initialCoordinate.getY() > this.maximumY)
 			throw new ExploringMarsException("Invalid initial position.");
+		
+		this.navigationHistory.add(initialCoordinate);
 	}
 	
 	private void validateMaximumEdges(int maximumX, int maximumY) throws ExploringMarsException {

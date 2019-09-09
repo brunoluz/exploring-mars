@@ -8,6 +8,8 @@ import exploring_mars.core.Direction;
 import exploring_mars.core.ExploringMarsException;
 import exploring_mars.core.RocketCoordinate;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
@@ -129,7 +131,7 @@ public class TerminalExplorerMarsHelperTest {
 
 		Assert.assertEquals(Direction.East, coordinate.getDirection());
 	}
-	
+
 	@Test
 	public void TerminalExplorerMarsHelper_readRocketCoordinates_westDirection() throws ExploringMarsException {
 
@@ -138,7 +140,7 @@ public class TerminalExplorerMarsHelperTest {
 
 		Assert.assertEquals(Direction.West, coordinate.getDirection());
 	}
-	
+
 	@Test
 	public void TerminalExplorerMarsHelper_readRocketCoordinates_validCoordinate() throws ExploringMarsException {
 
@@ -147,5 +149,39 @@ public class TerminalExplorerMarsHelperTest {
 
 		Assert.assertTrue(coordinate.equals(new RocketCoordinate(4, 5, Direction.West)));
 	}
+
+	@Test
+	public void TerminalExplorerMarsHelper_readMoves_LLL() throws ExploringMarsException {
+
+		Mockito.when(stdReader.readLine()).thenReturn("LLL");
+		List<Move> moves = helper.readMoves();
+
+		Assert.assertEquals(Move.Left, moves.get(0));
+		Assert.assertEquals(Move.Left, moves.get(1));
+		Assert.assertEquals(Move.Left, moves.get(2));
+	}
+	
+	@Test
+	public void TerminalExplorerMarsHelper_readMoves_RLM() throws ExploringMarsException {
+
+		Mockito.when(stdReader.readLine()).thenReturn("RLM");
+		List<Move> moves = helper.readMoves();
+
+		Assert.assertEquals(Move.Right, moves.get(0));
+		Assert.assertEquals(Move.Left, moves.get(1));
+		Assert.assertEquals(Move.Forward, moves.get(2));
+	}
+	
+	@Test
+	public void TerminalExplorerMarsHelper_readMoves_invalidMove() throws ExploringMarsException {
+
+		expectedEx.expect(ExploringMarsException.class);
+		expectedEx.expectMessage("Invalid moves.");
+
+		Mockito.when(stdReader.readLine()).thenReturn("RL M");
+		helper.readMoves();
+	}
+	
+	
 
 }
