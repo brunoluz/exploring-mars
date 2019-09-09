@@ -165,5 +165,23 @@ public class RocketNavigationTest {
 		navigation.turnLeft();
 		navigation.move();
 	}
+	
+	public void rocketNavigation_invalidInitialPositionX() throws ExploringMarsException {
+
+		expectedEx.expect(ExploringMarsException.class);
+		expectedEx.expectMessage("Invalid initial position.");
+		
+		RocketCoordinate invalidCoordinate = new RocketCoordinate(15, 0, Direction.North);
+		navigation = new RocketNavigation(10, 10, invalidCoordinate);
+	}
+	
+	public void rocketNavigation_invalidInitialPositionY() throws ExploringMarsException {
+
+		expectedEx.expect(ExploringMarsException.class);
+		expectedEx.expectMessage("Invalid initial position.");
+		
+		RocketCoordinate invalidCoordinate = new RocketCoordinate(0, 15, Direction.North);
+		navigation = new RocketNavigation(10, 10, invalidCoordinate);
+	}
 
 }

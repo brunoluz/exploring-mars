@@ -11,17 +11,32 @@ public class RocketNavigation {
 
 	public RocketNavigation(int maximumX, int maximumY) throws ExploringMarsException {
 
+		validateMaximumEdges(maximumX, maximumY);
+		this.maximumX = maximumX;
+		this.maximumY = maximumY;
+		
+		this.navigationHistory.add(new RocketCoordinate());
+	}
+
+	
+	public RocketNavigation(int maximumX, int maximumY, RocketCoordinate initialCoordinate) throws ExploringMarsException {
+		
+		validateMaximumEdges(maximumX, maximumY);
+		this.maximumX = maximumX;
+		this.maximumY = maximumY;
+		
+		if (initialCoordinate.getX() > this.maximumX || initialCoordinate.getY() > this.maximumY)
+			throw new ExploringMarsException("Invalid initial position.");
+	}
+	
+	private void validateMaximumEdges(int maximumX, int maximumY) throws ExploringMarsException {
 		if (maximumX < 1)
 			throw new ExploringMarsException("x edge must be greater then 0.");
 
 		if (maximumY < 1)
 			throw new ExploringMarsException("y edge must be greater then 0.");
-
-		this.maximumX = maximumX;
-		this.maximumY = maximumY;
-		this.navigationHistory.add(new RocketCoordinate());
 	}
-
+	
 	public RocketCoordinate getCurrentCoordinate() {
 		return navigationHistory.get(navigationHistory.size() - 1);
 	}
