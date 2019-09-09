@@ -3,6 +3,7 @@ package exploring_mars.cli;
 import java.util.ArrayList;
 
 import exploring_mars.core.ExploringMarsException;
+import exploring_mars.core.RocketCoordinate;
 import exploring_mars.core.RocketNavigation;
 
 public class TerminalCli {
@@ -20,6 +21,8 @@ public class TerminalCli {
 	public RocketNavigation exploreMars() throws ExploringMarsException {
 
 		Boundaries boundaries = helper.readBoundaries();
+		
+		RocketCoordinate coordinate = helper.readRocketCoordinates();
 		
 		return new RocketNavigation(boundaries.getX(), boundaries.getY());
 

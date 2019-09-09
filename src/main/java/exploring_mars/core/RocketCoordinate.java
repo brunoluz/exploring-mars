@@ -40,7 +40,7 @@ public class RocketCoordinate {
 		this.y = y;
 	}
 
-	Direction getDirection() {
+	public Direction getDirection() {
 		return direction;
 	}
 
